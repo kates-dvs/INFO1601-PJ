@@ -2,15 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Review Corner - Reviews</title>
+    <meta name="viewport" content="width=device-width">
+    <title id = "tile">Review Corner - Reviews</title>
     
     <link href="style.css" rel="stylesheet" type="text/css" />
 
-  </head>
+<style>
 
-  <style>
 * {
     box-sizing: border-box;
     padding: 0.5em;
@@ -213,14 +211,16 @@ li a:hover {
       display: inline;
       color : white ;
     }
+  
+</style>
     
-  </style>
+  </head>
 
-  <body>
+  <body onload = review()>
     <header> 
       <div id = "leftH" >      
  <ul>
-
+    
   <li><a class="active" href="library.html">Go Back</a></li>
   <li><a href="login.html">Login</a></li>
   <li><a href="register.html">Register</a></li>
@@ -247,14 +247,17 @@ li a:hover {
            
     </header>
     <aside>
-            <section>Links for All book Genre</section>
+            <section id = "bookGenre"></section>
             <section>My Previous Reviews <br>
               <table>
                 <thead>
                   <tr>
-                    Book Names
+                
                   </tr>
                 </thead>
+                <tbody id = "previousRatings">
+                  
+                </tbody>
               </table>
             </section>
     </aside>
@@ -262,11 +265,14 @@ li a:hover {
 
     <main>
                                         
-    <div id="left" > 
+    <div id="left"> 
 
     <h1 class="title">Is this book worth a read?</h1>
-   
-      <img src = "https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?fit=1024%2C640&ssl=1" >
+
+      <picture id ="img">
+
+        
+      </picture>
 
     <p id = "m"> Leave a review and a rating. Share your voice </p> 
 
@@ -275,20 +281,20 @@ li a:hover {
       Please select your rating of this book
         <div class="rating">
               
-            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+            <input id="star5" name="star" type="radio" value="1" class="radio-btn hide" />
             <label for="star5">☆</label>
-            <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+            <input id="star4" name="star" type="radio" value="2" class="radio-btn hide" />
             <label for="star4">☆</label>
             <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
             <label for="star3">☆</label>
-            <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+            <input id="star2" name="star" type="radio" value="4" class="radio-btn hide" />
             <label for="star2">☆</label>
-            <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+            <input id="star1" name="star" type="radio" value="5" class="radio-btn hide" />
             <label for="star1">☆</label>
             <div class="clear"></div>
           
         </div>
-      <textarea rows="10" cols="50">Write your review here</textarea>
+      <textarea rows="10" cols="50" name = "review">Write your review here</textarea>
       <br>
       <input type="submit" name="Submit" >
     </form>
@@ -296,7 +302,7 @@ li a:hover {
         
   </div>                     
   <div id="right" > <h1 class="title">All Reviews for this book</h1>
-  <img src = "https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?fit=1024%2C640&ssl=1">
+  <picture id ="img2"></picture>
 
     <table>
      <thead>
@@ -305,13 +311,10 @@ li a:hover {
           <th>Reader Name</th>
             <th>Book Review</th>
       </tr>
-       <tr>
-         <th>JS here to pull books data</th>
-         <th>Filter search for books with this title</th>
-         <th>Review will also be displayed here</th>
-       </tr>
       </thead>
-      
+      <tbody id ="tbody1">
+        
+      </tbody>
     </table>
     
   </div>                   
@@ -319,7 +322,133 @@ li a:hover {
  
     </main>
     <footer id = "foot">All content protected by Copyright 2022</footer>
-    <script src="script.js"></script>
+    
   </body>
-  
+   <script>
+
+    function review(){
+var data = sessionStorage.getItem("isbn1");
+let doc = document.getElementById("previousRatings");
+  console.log(data);
+let img = document.getElementById("img");
+let img2 = document.getElementById("img2");
+let html = '';
+
+fetch('Https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details')
+.then((response) => response.json())
+.then(json => {
+ for(let details of json.details){
+   if(details.isbn == data){
+     html += `<img src = "${details.imageUrll}">`;
+     img.innerHTML += html;
+    img2.innerHTML += html;
+     console.log(details.isbn);
+console.log(details.imageUrll);
+     previous(doc);
+     bookRatings(details.bookTitle);
+    
+   }
+ }
+});
+}
+
+async function uploadInfo(url, data){
+  try{
+     let response = await fetch(
+       url, 
+       {
+            method: 'POST',
+            body: JSON.stringify(data),
+         headers: { 'Content-Type':'application/json' }
+       },
+     );
+     console.log(JSON.stringify(data));
+     let result = await response.text();
+     console.log(result);
+   
+   }catch(error){
+     console.log(error);
+   }
+}
+
+
+function submit2(event){
+ event.preventDefault();
+var data1 = sessionStorage.getItem("isbn1");
+var currentUser = sessionStorage.getItem("thisUser");
+console.log(currentUser);
+ const starForm = event.target;
+ const reviewData = new FormData(starForm);
+ const moreData = Object.fromEntries(reviewData);
+ let body = {
+   "rating": {
+     "username": currentUser,
+     "isbn": data1,
+     "bookRating": moreData.star,
+     "review": moreData.review
+   }
+ }
+
+if(currentUser != null){  uploadInfo('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/ratings', body);
+}else{
+  window.location.href = "login.html";
+}
+}
+
+document.forms['starForm'].addEventListener("submit",submit2);
+
+function bookRatings(title){
+ 
+ let display = document.getElementById("tbody1");
+var isbnData = sessionStorage.getItem("isbn1");
+  console.log(isbnData);
+
+fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/ratings')
+.then((response2) => response2.json())
+.then(json2 => {
+ for(let ratings of json2.ratings){
+  if(ratings.isbn == isbnData){
+    display.innerHTML += `<tr>
+      <td>${title}</td>
+      <td>${ratings.username}</td>
+      <td><div>${ratings.bookRating}</div><div>${ratings.review}</div></td>
+    </tr>`
+    }
+  }
+});
+
+}  
+
+function previous(doc){
+var final = sessionStorage.getItem("thisUser");
+  console.log("hello");
+if(final != null){ fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/ratings')
+.then((response2) => response2.json())
+.then(json2 => {
+ for(let ratings of json2.ratings){
+   if(ratings.username == final){
+     console.log(ratings.isbn);
+     display(ratings.isbn, doc);
+   }
+}
+});
+}else{console.log("meh")};}
+
+function display(isbn, doc){
+
+fetch('Https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details')
+.then((response4) => response4.json())
+.then(json4 => {
+    for(let dets of json4.details){
+      if(dets.isbn == isbn){
+        console.log(dets.bookTitle);
+        doc.innerHTML += `<tr><td>${dets.bookTitle}</td></tr>`
+      }
+    }
+});
+}
+
+//document.forms['starForm'].addEventListener("load",previous);
+     
+   </script>
 </html>
