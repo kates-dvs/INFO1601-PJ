@@ -2,229 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Review Corner - Reviews</title>
+    <meta name="viewport" content="width=device-width">
+    <title id = "tile">Review Corner - Reviews</title>
     
     <link href="style.css" rel="stylesheet" type="text/css" />
-
+ 
   </head>
 
-  <style>
-* {
-    box-sizing: border-box;
-    padding: 0.5em;
-}
-
-html,body{
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-header, footer{
-  color: white;
-  background-color: #2C2B2C ;
-  grid-column: span 2;
-} 
-
-aside{
-  display: grid;
-  color: #212121;
-  background-color: #E1D6C8;
-  grid-template-rows: 2;
-  row-gap: 5px;
-}
-
-section{
-  background-color: #A785A6;
-  color: white;
-}
-
-main{
-  scroll-snap-type: y mandatory;
-  grid-gap: 4px;
-  background-color: #E1D6C8;
-  color: white;
-  max-width: 100%;
-  overflow-y: scroll;
-  border : solid ;
-  
-}
-
-body{
-  display: grid;
-  background-color: #FFFFFF;
-  grid-template-rows: 1fr 8fr 1fr;
-  grid-template-columns: 2fr 8fr;
-}
-img{    
-  padding: 5px;
-  height : 100%;
-  width: 70%;
-  border-radius: 5px 5px 5px 5px;
-  margin-left : auto;
-  margin-right: auto;
-  display : block ;
-}
-.title{
-  text-align: center;
-  color: black;
-}
-    
-    div{
-      color : black ;
-    }
-  #container{
-    max-width : 100%;
-  }
-  #left{
-    float:left; 
-    width:50%;
-    border : solid ;
-  }
-  #right{
-    float:right; 
-    width:50%;
-    
-  }
-
-  textarea{
-    resize:none;
-    
-  }
-
-  img.logo{
-    display: inline;
-    width : 90px;
-    height : 90px;
-    float : right;
-    border-radius: 50%;
-  }
-    #leftH{
-      float: left;
-      width:80%;
-      text-align: center;
-    }
-    #rightH{
-      float : right;
-      width: 20%;
-      height: 100%; 
-      text-align: center;
-    }
-
-    #foot{
-      text-align : center ;
-    }
-
-      ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #857364;
-  
-}
-
-li {
-  float: right;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-  border-radius: 10px;
-}
-
-
-      .txt-center {
-    text-align: center;
-    
-}
-.hide {
-    display: none;
-}
-
-.clear {
-    float: none;
-    clear: both;
-}
-
-.rating {
-    width: 90px;
-    unicode-bidi: bidi-override;
-    direction: rtl;
-    text-align: center;
-    position: relative;
-    display : inline ;
-}
-
-.rating > label {
-    float: right;
-    display: inline;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    width: 1.1em;
-    cursor: pointer;
-    color: #000;
-}
-
-.rating > label:hover,
-.rating > label:hover ~ label,
-.rating > input.radio-btn:checked ~ label {
-    color: transparent;
-}
-
-.rating > label:hover:before,
-.rating > label:hover ~ label:before,
-.rating > input.radio-btn:checked ~ label:before,
-.rating > input.radio-btn:checked ~ label:before {
-    content: "\2605";
-    position: absolute;
-    left: 0;
-    color: #FFD700;
-}
-      #starForm{
-        width:100%;
-        height: 10%;
-        
-      }
-#mission{
-  float : left;
-  color : white;
-}
-      #m{
-        text-align: center;
-      }
-
-      #logoID{
-        display : inline ;
-        width : 50% ;
-      }
-    #t{
-      display: inline;
-      color : white ;
-    }
-    
-  </style>
-
-  <body>
+  <body onload = review()>
     <header> 
       <div id = "leftH" >      
  <ul>
-
-  <li><a class="active" href="library.html">Go Back</a></li>
-  <li><a href="login.html">Login</a></li>
-  <li><a href="register.html">Register</a></li>
-  <li><a href="index.html">Home</a></li>
+    
+  <li><a class="active" href="#home">About</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact Us</a></li>
+  <li><a href="#about">Home</a></li>
   <li id = "mission">Mission Statement: Here at Review Corner, we are determined to bring quality 
    books to the users.  </li>  
 </ul>
@@ -247,14 +40,17 @@ li a:hover {
            
     </header>
     <aside>
-            <section>Links for All book Genre</section>
+            <section id = "bookGenre"></section>
             <section>My Previous Reviews <br>
               <table>
                 <thead>
                   <tr>
-                    Book Names
+                
                   </tr>
                 </thead>
+                <tbody id = "previousRatings">
+                  
+                </tbody>
               </table>
             </section>
     </aside>
@@ -262,11 +58,14 @@ li a:hover {
 
     <main>
                                         
-    <div id="left" > 
+    <div id="left"> 
 
     <h1 class="title">Is this book worth a read?</h1>
-   
-      <img src = "https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?fit=1024%2C640&ssl=1" >
+
+      <picture id ="img">
+
+        
+      </picture>
 
     <p id = "m"> Leave a review and a rating. Share your voice </p> 
 
@@ -275,20 +74,20 @@ li a:hover {
       Please select your rating of this book
         <div class="rating">
               
-            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+            <input id="star5" name="star" type="radio" value="1" class="radio-btn hide" />
             <label for="star5">☆</label>
-            <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+            <input id="star4" name="star" type="radio" value="2" class="radio-btn hide" />
             <label for="star4">☆</label>
             <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
             <label for="star3">☆</label>
-            <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+            <input id="star2" name="star" type="radio" value="4" class="radio-btn hide" />
             <label for="star2">☆</label>
-            <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+            <input id="star1" name="star" type="radio" value="5" class="radio-btn hide" />
             <label for="star1">☆</label>
             <div class="clear"></div>
           
         </div>
-      <textarea rows="10" cols="50">Write your review here</textarea>
+      <textarea rows="10" cols="50" name = "review">Write your review here</textarea>
       <br>
       <input type="submit" name="Submit" >
     </form>
@@ -296,7 +95,7 @@ li a:hover {
         
   </div>                     
   <div id="right" > <h1 class="title">All Reviews for this book</h1>
-  <img src = "https://i0.wp.com/www.alphr.com/wp-content/uploads/2022/03/Find-a-Book-Title-When-You-Dont-Know-the-Name.jpeg?fit=1024%2C640&ssl=1">
+  <picture id ="img2"></picture>
 
     <table>
      <thead>
@@ -305,13 +104,10 @@ li a:hover {
           <th>Reader Name</th>
             <th>Book Review</th>
       </tr>
-       <tr>
-         <th>JS here to pull books data</th>
-         <th>Filter search for books with this title</th>
-         <th>Review will also be displayed here</th>
-       </tr>
       </thead>
-      
+      <tbody id ="tbody1">
+        
+      </tbody>
     </table>
     
   </div>                   
@@ -319,7 +115,7 @@ li a:hover {
  
     </main>
     <footer id = "foot">All content protected by Copyright 2022</footer>
-    <script src="script.js"></script>
+    
   </body>
-  
+   <script src = "review.js"></script>
 </html>
