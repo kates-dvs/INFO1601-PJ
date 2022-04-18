@@ -147,7 +147,7 @@ function submit(event){
  const moreData = Object.fromEntries(data);
 
 var used = false;
-fetch('https://api.sheety.co/504cf0647ef153be18864c788273571e/info1601Api/users')
+fetch('https://api.sheety.co/05b37fd5b937c7f1912f71ed0621e467/info1601Api/users')
 .then((response) => response.json())
 .then(json => {
   console.log(json.users);
@@ -172,7 +172,7 @@ if(used == false){
 var nowUser = moreData.username;
 sessionStorage.setItem("thisUser", nowUser);
 console.log(body);
-  uploadInfo('https://api.sheety.co/504cf0647ef153be18864c788273571e/info1601Api/users', body);
+  uploadInfo('https://api.sheety.co/05b37fd5b937c7f1912f71ed0621e467/info1601Api/users', body);
 if(used == false){
 window.location.href = "library.html";
 }
