@@ -150,9 +150,7 @@ var used = false;
 fetch('https://api.sheety.co/05b37fd5b937c7f1912f71ed0621e467/info1601Api/users')
 .then((response) => response.json())
 .then(json => {
-  console.log(json.users);
-  let data2 = json.users;
-  for(let stuff of data2.users){
+  for(let stuff of json.users){
    if(moreData.username == stuff.username){
      let part = document.getElementById("registerPart");
      part.innerHTML += `<p id = "reg">Username already in use.</p>`;
