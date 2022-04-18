@@ -152,7 +152,7 @@ fetch('https://api.sheety.co/504cf0647ef153be18864c788273571e/info1601Api/users'
 .then(json => {
   console.log(json.users);
   let data2 = json.users;
-  for(let stuff of data2){
+  for(let stuff of data2.users){
    if(moreData.username == stuff.username){
      let part = document.getElementById("registerPart");
      part.innerHTML += `<p id = "reg">Username already in use.</p>`;
@@ -167,12 +167,14 @@ if(used == false){
      "password": moreData.password
    }
  }
+ let part2 = document.getElementById("registerPart");
+
 var nowUser = moreData.username;
 sessionStorage.setItem("thisUser", nowUser);
 console.log(body);
   uploadInfo('https://api.sheety.co/504cf0647ef153be18864c788273571e/info1601Api/users', body);
 if(used == false){
-window.location.replace = "library.html";
+window.location.href = "library.html";
 }
 }
 });
