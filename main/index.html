@@ -72,26 +72,20 @@ body {
     display: flex;
     justify-content:right;
   }
-
-  h3{
-    text-align: center;
-    padding: 5px;
-  }
 </style>
   
 <header id = "#head">
-  <ul>
+  <ul id = "log/reg" >
     <li><a href="login.html">Login</a></li>
     <li><a href="register.html">Register</a></li>
   </ul>
 </header>
   
-<body onload = clear()>
+<body>
   <main>
     
     <div>
        <h1 id = "welcomeMessage">Welcome to the Review Corner</h1>
-      <h3>Please click any on the books below to be directed our library!</h3>
     </div>
   
   <br> <br> <br>
@@ -157,7 +151,7 @@ function carousel() {
   setTimeout(carousel, 2000); // Change image every 2 seconds
 }
 
-  let url = 'https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details';
+let url = 'https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details';
 
 fetch(url)
 .then((response) => response.json())
@@ -334,19 +328,36 @@ sessionStorage.setItem("isbn1", someInfo);
 function clear(){
   sessionStorage.removeItem("thisUser");
 }
-/*
-user = sessionStorage.getItem("userLog");
-var id = document.getElementById("log");
-if(user != null){
-  id +=   `<p>Not logged in</p>`
-}else{
-  id +=  `<p>User logged in</p>`
-}
-*/
 
+var sameUser = sessionStorage.getItem("thisUser");
+
+if(sameUser != null){
+  replace();
+}
+
+function replace(){
+let doc = document.getElementById("log/reg");
+  let doc2 = document.getElementById("#head");
+var user = sessionStorage.getItem("thisUser");
+doc.remove();
+
+doc2.innerHTML +=  `<ul id = "log/reg"><li><a href = "userpage.html">${user}</a></li><li><a href = "index.html" onclick = "logout()">Logout</a></li></ul>`;
+  
+}
+
+function logout(){
+let doc = document.getElementById("log/reg");
+let doc2 = document.getElementById("#head");
+doc.remove();
+
+doc2.innerHTML += `<ul id = "log/reg" >
+    <li><a href="login.html">Login</a></li>
+    <li><a href="register.html">Register</a></li>
+  </ul>`;
+
+clear();
+}  
 </script>
 
-  
 </body>
-
 </html>
