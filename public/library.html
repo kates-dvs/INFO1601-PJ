@@ -256,7 +256,7 @@
     </div>
   </section>
     
-    <script>let url = 'https://api.sheety.co/9f45613aa29209174b64b0650a3e67ff/info1601Api/details';
+    <script>let url = 'https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/details';
 
 fetch(url)
 .then((response) => response.json())
@@ -434,7 +434,7 @@ let doc = document.getElementById("log/reg");
 var user = sessionStorage.getItem("thisUser");
 doc.remove();
 
-doc2.innerHTML +=  `<ul id = "log/reg"><li><a>${sameUser}</a></li><li><a href = "index.html" onclick = "logout()">Logout</a></li></ul>`;
+doc2.innerHTML +=  `<ul id = "log/reg"><li><a>${user}</a></li><li><a href = "index.html" onclick = "logout()">Logout</a></li></ul>`;
   
 }
 
