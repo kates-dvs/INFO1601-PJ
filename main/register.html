@@ -167,8 +167,10 @@ if(used == false){
      "password": moreData.password
    }
  }
-console.log("hello");
-  uploadInfo('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/users', body);
+var nowUser = moreData.username;
+sessionStorage.setItem("thisUser", nowUser);
+console.log(body);
+uploadInfo('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/users', body);
 
 window.location.href = "library.html";
 }
