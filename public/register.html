@@ -121,7 +121,7 @@
 </body>
   <script>
 
-    async function uploadInfo(url, data){
+   async function uploadInfo(url, data){
   try{
      let response = await fetch(
        url, 
@@ -141,6 +141,7 @@
 }
 
 function submit(event){
+ event.preventDefault();
  const registerPart = event.target;
  const data = new FormData(registerPart);
  const moreData = Object.fromEntries(data);
@@ -169,7 +170,7 @@ if(used == false){
 var nowUser = moreData.username;
 sessionStorage.setItem("thisUser", nowUser);
 console.log(body);
-uploadInfo('https://api.sheety.co/504cf0647ef153be18864c788273571e/info1601Api/users', body);
+  uploadInfo('https://api.sheety.co/504cf0647ef153be18864c788273571e/info1601Api/users', body);
 
 window.location.href = "library.html";
 }
