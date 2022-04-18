@@ -146,7 +146,7 @@ function submit(event){
  const data = new FormData(registerPart);
  const moreData = Object.fromEntries(data);
 
-let used = false;
+var used = false;
 fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/users')
 .then((response) => response.json())
 .then(json => {
@@ -155,11 +155,10 @@ fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/users'
   for(let stuff of data){
    if(moreData.username == stuff.username){
      let part = document.getElementById("registerPart");
-     part.innerHTML += <p>Username already in use.</p>
+     part.innerHTML += `<p id = "reg">Username already in use.</p>`;
      used = true;
    }
   }
-}
 
 if(used == false){
  let body = {
@@ -168,14 +167,14 @@ if(used == false){
      "password": moreData.password
    }
  }
-}
+console.log("hello");
+  uploadInfo('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/users', body);
 
-if(used == false){
-uploadInfo('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/users', body);
+window.location.href = "library.html";
 }
+});
 }
 
 document.forms['registerPart'].addEventListener("submit", submit);
-    
   </script>
 </html>
