@@ -340,6 +340,10 @@ var sameUser = sessionStorage.getItem("thisUser");
 
 if(sameUser != null){
   replace();
+  page.innerHTML += `<span style = "color:white">${sameUser} is logged in</span>`
+}else{
+  page.innerHTML += `<span style = "color:white">Not logged in</span>`
+}
 }
 
 function replace(){
