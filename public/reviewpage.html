@@ -238,11 +238,11 @@ li a:hover {
   <body onload = review()>
     <header> 
       <div id = "leftH" >      
- <ul>
+ <ul id = "reviewNav">
     
   <li><a class="active" href="library.html">Go Back</a></li>
-  <li><a href="login.html">Login</a></li>
-  <li><a href="register.html">Register</a></li>
+  <li id = "logPage" ><a href="login.html">Login</a></li>
+  <li id = "regPage" ><a href="register.html">Register</a></li>
   <li><a href="index.html">Home</a></li>
   <li id = "mission">Mission Statement: Here at Review Corner, we are determined to bring quality 
    books to the users.  </li>   
@@ -433,6 +433,45 @@ fetch('https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/rating
   }
 });
 
+}
+
+var reviewUser = sessionStorage.getItem("thisUser");
+
+function remove(){
+let doc = document.getElementById("logPage");
+let doc3 = document.getElementById("regPage");
+let doc2 = document.getElementById("rightH");
+doc.remove();
+doc3.remove();
+
+doc2.innerHTML += `<div id= "logged" style = "color:white">${reviewUser} logged in</div>`
+}
+
+if(reviewUser != null){
+  remove();
+}else{
+  notLogged();
+}
+
+function notLogged(){
+let doc = document.getElementById("logPage");
+let doc3 = document.getElementById("regPage");
+let doc2 = document.getElementById("reviewNav");
+let doc4 = document.getElementById("leftH");
+if(doc.innerHTML == null && doc3 == null){
+  doc2.remove();
+
+doc4.innerHTML += `
+    <ul id = "reviewNav">
+    
+  <li><a class="active" href="library.html">Go Back</a></li>
+  <li id = "logPage" ><a href="login.html">Login</a></li>
+  <li id = "regPage" ><a href="register.html">Register</a></li>
+  <li><a href="index.html">Home</a></li>
+  <li id = "mission">Mission Statement: Here at Review Corner, we are determined to bring quality 
+   books to the users.  </li>   
+</ul>`;
+}
 }
 
 
