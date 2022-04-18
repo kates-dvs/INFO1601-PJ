@@ -405,17 +405,7 @@ fetch('https://api.sheety.co/504cf0647ef153be18864c788273571e/info1601Api/rating
 
 }
 
-var ifUser = sessionStorage.getItem("thisUser");
 
-if(ifUser == null){
-let doc5 = document.getElementById("myPrev");
-
-doc5.innerHTML += `<a id = 'myPrev' href = "login.html">Login to view previous reviews</a><br>`
-  
-}else{
-  let doc5 = document.getElementById("myPrev");
-  doc5.innerHTML += `<a id = 'myPrev' href = "userpage.html">My Previous Reviews</a><br>`
-}
 
 //document.forms['starForm'].addEventListener("load",previous);
    </script>
