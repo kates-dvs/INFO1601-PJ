@@ -63,7 +63,7 @@
   function previous(){
 var final = sessionStorage.getItem("thisUser");
   console.log("hello");
-if(final != null){ fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/ratings')
+if(final != null){ fetch('https://api.sheety.co/0dfecf46948cee60fab146c11a1505fa/info1601Api/ratings')
 .then((response2) => response2.json())
 .then(json2 => {
  for(let ratings of json2.ratings){
@@ -78,7 +78,7 @@ if(final != null){ fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21
 function display(isbn, name){
 let doc = document.getElementById("personal");
 let use = document.getElementById("userHead");
-fetch('Https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details')
+fetch('https://api.sheety.co/0dfecf46948cee60fab146c11a1505fa/info1601Api/details')
 .then((response4) => response4.json())
 .then(json4 => {
     for(let dets of json4.details){
