@@ -63,21 +63,23 @@
   function previous(){
 var final = sessionStorage.getItem("thisUser");
   console.log("hello");
-if(final != null){ fetch('https://api.sheety.co/0dfecf46948cee60fab146c11a1505fa/info1601Api/ratings')
+if(final != null){ 
+  let use = document.getElementById("userHead");
+   use.innerHTML += `<h1>${final} is logged in</h1>`
+  fetch('https://api.sheety.co/0dfecf46948cee60fab146c11a1505fa/info1601Api/ratings')
 .then((response2) => response2.json())
 .then(json2 => {
  for(let ratings of json2.ratings){
    if(ratings.username == final){
      console.log(ratings.isbn);
-     display(ratings.isbn, final);
+     display(ratings.isbn);
    }
 }
 });
 }else{console.log("meh")};}
 
-function display(isbn, name){
+function display(isbn){
 let doc = document.getElementById("personal");
-let use = document.getElementById("userHead");
 fetch('https://api.sheety.co/0dfecf46948cee60fab146c11a1505fa/info1601Api/details')
 .then((response4) => response4.json())
 .then(json4 => {
@@ -87,7 +89,6 @@ fetch('https://api.sheety.co/0dfecf46948cee60fab146c11a1505fa/info1601Api/detail
        doc.innerHTML +=  ` <item>
       <a onclick = "rating(${dets.isbn})" href = "reviewpage.html"><img src = "${dets.imageUrll}"><div>${dets.bookTitle}</div></a>
     </item>`
-        use.innerHTML += `<h1>${name} is logged in</h1>`
       }
     }
 });
