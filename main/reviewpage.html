@@ -6,7 +6,8 @@
     <title id = "tile">Review Corner - Reviews</title>
     
     <link href="style.css" rel="stylesheet" type="text/css" />
-
+ 
+  </head>
 <style>
 
 * {
@@ -213,20 +214,18 @@ li a:hover {
     }
   
 </style>
-    
-  </head>
 
   <body onload = review()>
     <header> 
       <div id = "leftH" >      
  <ul>
     
-  <li><a class="active" href="library.html">Go Back</a></li>
+   <li><a class="active" href="library.html">Go Back</a></li>
   <li><a href="login.html">Login</a></li>
   <li><a href="register.html">Register</a></li>
   <li><a href="index.html">Home</a></li>
   <li id = "mission">Mission Statement: Here at Review Corner, we are determined to bring quality 
-   books to the users.  </li>  
+   books to the users.  </li>   
 </ul>
 
       </div>
@@ -247,18 +246,8 @@ li a:hover {
            
     </header>
     <aside>
-            <section id = "bookGenre"></section>
-            <section>My Previous Reviews <br>
-              <table>
-                <thead>
-                  <tr>
-                
-                  </tr>
-                </thead>
-                <tbody id = "previousRatings">
-                  
-                </tbody>
-              </table>
+            <section id = "myPrev">
+              
             </section>
     </aside>
  
@@ -325,16 +314,14 @@ li a:hover {
     
   </body>
    <script>
-
-    function review(){
+     function review(){
 var data = sessionStorage.getItem("isbn1");
-let doc = document.getElementById("previousRatings");
   console.log(data);
 let img = document.getElementById("img");
 let img2 = document.getElementById("img2");
 let html = '';
 
-fetch('Https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details')
+fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details')
 .then((response) => response.json())
 .then(json => {
  for(let details of json.details){
@@ -344,7 +331,6 @@ fetch('Https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/detail
     img2.innerHTML += html;
      console.log(details.isbn);
 console.log(details.imageUrll);
-     previous(doc);
      bookRatings(details.bookTitle);
     
    }
@@ -417,38 +403,20 @@ fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/rating
   }
 });
 
-}  
-
-function previous(doc){
-var final = sessionStorage.getItem("thisUser");
-  console.log("hello");
-if(final != null){ fetch('https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/ratings')
-.then((response2) => response2.json())
-.then(json2 => {
- for(let ratings of json2.ratings){
-   if(ratings.username == final){
-     console.log(ratings.isbn);
-     display(ratings.isbn, doc);
-   }
 }
-});
-}else{console.log("meh")};}
 
-function display(isbn, doc){
+var ifUser = sessionStorage.getItem("thisUser");
 
-fetch('Https://api.sheety.co/05f3651d73aded3412cd607d3653df21/info1601Api/details')
-.then((response4) => response4.json())
-.then(json4 => {
-    for(let dets of json4.details){
-      if(dets.isbn == isbn){
-        console.log(dets.bookTitle);
-        doc.innerHTML += `<tr><td>${dets.bookTitle}</td></tr>`
-      }
-    }
-});
+if(ifUser == null){
+let doc5 = document.getElementById("myPrev");
+
+doc5.innerHTML += `<a id = 'myPrev' href = "login.html">Login to view previous reviews</a><br>`
+  
+}else{
+  let doc5 = document.getElementById("myPrev");
+  doc5.innerHTML += `<a id = 'myPrev' href = "userpage.html">My Previous Reviews</a><br>`
 }
 
 //document.forms['starForm'].addEventListener("load",previous);
-     
    </script>
 </html>
