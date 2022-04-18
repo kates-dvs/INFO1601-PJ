@@ -300,15 +300,15 @@ li a:hover {
       Please select your rating of this book
         <div class="rating">
               
-            <input id="star5" name="star" type="radio" value="1" class="radio-btn hide" />
+            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
             <label for="star5">☆</label>
-            <input id="star4" name="star" type="radio" value="2" class="radio-btn hide" />
+            <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
             <label for="star4">☆</label>
             <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
             <label for="star3">☆</label>
-            <input id="star2" name="star" type="radio" value="4" class="radio-btn hide" />
+            <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
             <label for="star2">☆</label>
-            <input id="star1" name="star" type="radio" value="5" class="radio-btn hide" />
+            <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
             <label for="star1">☆</label>
             <div class="clear"></div>
           
@@ -351,7 +351,7 @@ let img = document.getElementById("img");
 let img2 = document.getElementById("img2");
 let html = '';
 
-fetch('https://api.sheety.co/9f45613aa29209174b64b0650a3e67ff/info1601Api/details')
+fetch('https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/details')
 .then((response) => response.json())
 .then(json => {
  for(let details of json.details){
@@ -405,7 +405,7 @@ console.log(currentUser);
    }
  }
 
-if(currentUser != null){  uploadInfo('https://api.sheety.co/9f45613aa29209174b64b0650a3e67ff/info1601Api/ratings', body);
+if(currentUser != null){  uploadInfo('https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/ratings', body);
 }else{
   window.location.href = "login.html";
 }
@@ -419,7 +419,7 @@ function bookRatings(title){
 var isbnData = sessionStorage.getItem("isbn1");
   console.log(isbnData);
 
-fetch('https://api.sheety.co/9f45613aa29209174b64b0650a3e67ff/info1601Api/ratings')
+fetch('https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/ratings')
 .then((response2) => response2.json())
 .then(json2 => {
  for(let ratings of json2.ratings){
