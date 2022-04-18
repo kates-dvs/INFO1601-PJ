@@ -35,9 +35,26 @@ aside{
   row-gap: 5px;
 }
 
-section{
+
+.Prev ul {
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #A785A6;
+  
+}
+
+.Prev a {
+padding: 10px;
+margin: 10px;
+}
+  
+section {
   background-color: #A785A6;
   color: white;
+  
 }
 
 main{
@@ -57,6 +74,7 @@ body{
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-columns: 2fr 8fr;
 }
+  
 img{    
   padding: 5px;
   height : 100%;
@@ -208,6 +226,8 @@ li a:hover {
         display : inline ;
         width : 50% ;
       }
+
+  
     #t{
       display: inline;
       color : white ;
@@ -220,7 +240,7 @@ li a:hover {
       <div id = "leftH" >      
  <ul>
     
-   <li><a class="active" href="library.html">Go Back</a></li>
+  <li><a class="active" href="library.html">Go Back</a></li>
   <li><a href="login.html">Login</a></li>
   <li><a href="register.html">Register</a></li>
   <li><a href="index.html">Home</a></li>
@@ -245,13 +265,23 @@ li a:hover {
     </div>
            
     </header>
+    <div class="Prev">
     <aside>
             <section id = "myPrev">
-              
+            <ul>
+              <li><a class="active" href="library.html">Romance</a></li>
+              <li><a class="active" href="library.html">Horror</a></li>
+              <li><a class="active" href="library.html">Science-Fiction</a></li>
+              <li><a class="active" href="library.html">Young Adult</a></li>
+              <li><a class="active" href="library.html">Comedy</a></li>
+              <li><a class="active" href="library.html">Action</a></li>
+              <li><a class="active" href="library.html">Fantasy</a></li>
+              <li><a class="active" href="library.html">Non-Fiction</a></li>
+            </ul>              
             </section>
     </aside>
- 
-
+    </div>
+    
     <main>
                                         
     <div id="left"> 
