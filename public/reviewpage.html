@@ -351,7 +351,7 @@ let img = document.getElementById("img");
 let img2 = document.getElementById("img2");
 let html = '';
 
-fetch('https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/details')
+fetch('https://api.sheety.co/ca41fcd03d2edc69ae7ce65ac14b9b47/info1601Api/details')
 .then((response) => response.json())
 .then(json => {
  for(let details of json.details){
@@ -405,7 +405,7 @@ console.log(currentUser);
    }
  }
 
-if(currentUser != null){  uploadInfo('https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/ratings', body);
+if(currentUser != null){  uploadInfo('https://api.sheety.co/ca41fcd03d2edc69ae7ce65ac14b9b47/info1601Api/ratings', body);
 }else{
   window.location.href = "login.html";
 }
@@ -419,7 +419,7 @@ function bookRatings(title){
 var isbnData = sessionStorage.getItem("isbn1");
   console.log(isbnData);
 
-fetch('https://api.sheety.co/8857a741647987f027230585ce5bca99/info1601Api/ratings')
+fetch('https://api.sheety.co/ca41fcd03d2edc69ae7ce65ac14b9b47/info1601Api/ratings')
 .then((response2) => response2.json())
 .then(json2 => {
  for(let ratings of json2.ratings){
